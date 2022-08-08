@@ -1,42 +1,80 @@
 from cgitb import text
 from email.quoprimime import body_length
+from pickle import GLOBAL
 from tkinter import *
 from turtle import color, width
 calcWindow=Tk()
-calcWindow.title("Simple Calculator")
-calcWindow.geometry("300x300")
+calcWindow.title("Calculator")
+calcWindow.geometry("160x308")
+calcWindow.resizable(0,0)
 #calcWindow.configure( color='black')
-text1=Entry(calcWindow)
-#textfeild.pack()
 mathexpression=""
-
-btn1=Button(calcWindow,text=1,height=2,width=4,background='gray')
-btn2=Button(calcWindow,text=2,height=2,width=4,background='gray')
-btn3=Button(calcWindow,text=3,height=2,width=4,background='gray')
-btn4=Button(calcWindow,text=4,height=2,width=4,background='gray')
-btn5=Button(calcWindow,text=5,height=2,width=4,background='gray')
-btn6=Button(calcWindow,text=6,height=2,width=4,background='gray')
-btn7=Button(calcWindow,text=7,height=2,width=4,background='gray')
-btn8=Button(calcWindow,text=8,height=2,width=4,background='gray')
-btn9=Button(calcWindow,text=9,height=2,width=4,background='gray')
-btn0=Button(calcWindow,text=0,height=2,width=4,background='gray')
-btn00=Button(calcWindow,text="00",height=2,width=4,background='gray')
-btndot=Button(calcWindow,text=".",height=2,width=4,background='gray')
-btnon=Button(calcWindow,text="ON",height=2,width=4,background='gray')
-btnadd=Button(calcWindow,text="+",height=2,width=4,background='gray')
-btnmin=Button(calcWindow,text="-",height=2,width=4,background='gray')
-btnmult=Button(calcWindow,text="*",height=2,width=4,background='gray')
-btndiv=Button(calcWindow,text="/",height=2,width=4,background='gray')
-btnperc=Button(calcWindow,text="%",height=2,width=4,background='gray')
-btnsqr=Button(calcWindow,text="^",height=2,width=4,background='gray')
-btnroot=Button(calcWindow,text="~",height=2,width=4,background='gray')
-btneql=Button(calcWindow,text="=",height=2,width=4,background='white')
-btnclr=Button(calcWindow,text="C",height=2,width=4,background='orange')
-btnopen=Button(calcWindow,text="(",height=2,width=4,background='gray')
-btncls=Button(calcWindow,text=")",height=2,width=4,background='gray')
+input_text=StringVar()
+#text1=Label(calcWindow, text = "Label",  
+ #   font = ("Cambria Math", 20),  
+  #  background = "white",  
+   # textvariable=mathexpression)
+def buttonclick(var):
+    exp=var
+    set_mathexpression(exp)
+    #print (exp)
+    
+def set_mathexpression(exp):
+    global mathexpression
+    mathexpression=mathexpression+str(exp)
+    #text1.bind(mathexpression)
+    input_text.set(mathexpression)
 
 
-text1.grid(row=0,column=0,rowspan=4,columnspan=2)
+
+
+input_frame = Frame(calcWindow, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)
+ 
+input_frame.pack(side=TOP)
+    
+
+text1= Entry(input_frame, font=('arial', 18, 'bold'), textvariable=input_text, width=12, bg="#eee", bd=0, justify=RIGHT)    
+
+text1.grid(row=0, column=0)
+ 
+text1.pack(ipady=10)
+
+#text1.pack(expand = True, fill = "both")  
+#textfeild.pack()
+
+
+
+btn_frame = Frame(calcWindow, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)
+ 
+btn_frame.pack()
+
+btn1=Button(btn_frame,text=1,height=2,width=4,background='gray',command=buttonclick(1))
+btn2=Button(btn_frame,text=2,height=2,width=4,background='gray',command=buttonclick(2))
+btn3=Button(btn_frame,text=3,height=2,width=4,background='gray',command=buttonclick(3))
+btn4=Button(btn_frame,text=4,height=2,width=4,background='gray',command=buttonclick(4))
+btn5=Button(btn_frame,text=5,height=2,width=4,background='gray',command=buttonclick(5))
+btn6=Button(btn_frame,text=6,height=2,width=4,background='gray',command=buttonclick(6))
+btn7=Button(btn_frame,text=7,height=2,width=4,background='gray',command=buttonclick(7))
+btn8=Button(btn_frame,text=8,height=2,width=4,background='gray',command=buttonclick(8))
+btn9=Button(btn_frame,text=9,height=2,width=4,background='gray',command=buttonclick(9))
+btn0=Button(btn_frame,text=0,height=2,width=4,background='gray',command=buttonclick(0))
+btn00=Button(btn_frame,text="00",height=2,width=4,background='gray',command=buttonclick(00))
+btndot=Button(btn_frame,text=".",height=2,width=4,background='gray',command=buttonclick('.'))
+btnon=Button(btn_frame,text="ON",height=2,width=4,background='gray',command=buttonclick(1))
+btnadd=Button(btn_frame,text="+",height=2,width=4,background='gray',command=buttonclick('+'))
+btnmin=Button(btn_frame,text="-",height=2,width=4,background='gray',command=buttonclick('-'))
+btnmult=Button(btn_frame,text="*",height=2,width=4,background='gray',command=buttonclick('*'))
+btndiv=Button(btn_frame,text="/",height=2,width=4,background='gray',command=buttonclick('/'))
+btnperc=Button(btn_frame,text="%",height=2,width=4,background='gray',command=buttonclick('%'))
+btnsqr=Button(btn_frame,text="^",height=2,width=4,background='gray',command=buttonclick('^'))
+btnroot=Button(btn_frame,text="~",height=2,width=4,background='gray',command=buttonclick('~'))
+btneql=Button(btn_frame,text="=",height=2,width=4,background='white',command=buttonclick('='))
+btnclr=Button(btn_frame,text="C",height=2,width=4,background='orange',command=buttonclick('c'))
+btnopen=Button(btn_frame,text="(",height=2,width=4,background='gray',command=buttonclick('('))
+btncls=Button(btn_frame,text=")",height=2,width=4,background='gray',command=buttonclick(')'))
+
+
+#text1.grid(row=0,column=0,rowspan=4,columnspan=2)
 
 btn1.grid(row=4,column=0)
 btn2.grid(row=4,column=1)
@@ -68,6 +106,10 @@ btnopen.grid(row=9,column=0)
 btncls.grid(row=9,column=1)
 btnclr.grid(row=9,column=2)
 btneql.grid(row=9,column=3)
+
+
+
+
 
 
 
