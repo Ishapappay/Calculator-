@@ -1,5 +1,6 @@
 from cgitb import text
 from email.quoprimime import body_length
+from faulthandler import disable
 from pickle import GLOBAL
 from tkinter import *
 from turtle import color, width
@@ -10,6 +11,10 @@ calcWindow.resizable(0,0)
 #calcWindow.configure( color='black')
 mathexpression=""
 input_text=StringVar()
+
+#input_text= Entry(input_frame, font=('arial', 18, 'bold'), textvariable=input_text, width=50, bg="#eee", bd=0, justify=RIGHT)
+
+
 #text1=Label(calcWindow, text = "Label",  
  #   font = ("Cambria Math", 20),  
   #  background = "white",  
@@ -25,6 +30,18 @@ def set_mathexpression(exp):
     #text1.bind(mathexpression)
     input_text.set(mathexpression)
 
+def btn_clr():
+    mathexpression=""
+    input_text.set("")
+
+def btn_eql():
+    global mathexpression
+  #  answer=eval(mathexpression)
+  #  input_text.set(answer)
+    mathexpression=""
+
+def btn_on():
+    text1.configure(state='normal')
 
 
 
@@ -38,6 +55,7 @@ text1= Entry(input_frame, font=('arial', 18, 'bold'), textvariable=input_text, w
 text1.grid(row=0, column=0)
  
 text1.pack(ipady=10)
+text1.configure(state='disabled')
 
 #text1.pack(expand = True, fill = "both")  
 #textfeild.pack()
@@ -48,30 +66,30 @@ btn_frame = Frame(calcWindow, width=312, height=50, bd=0, highlightbackground="b
  
 btn_frame.pack()
 
-btn1=Button(btn_frame,text=1,height=2,width=4,background='gray',command=buttonclick(1))
-btn2=Button(btn_frame,text=2,height=2,width=4,background='gray',command=buttonclick(2))
-btn3=Button(btn_frame,text=3,height=2,width=4,background='gray',command=buttonclick(3))
-btn4=Button(btn_frame,text=4,height=2,width=4,background='gray',command=buttonclick(4))
-btn5=Button(btn_frame,text=5,height=2,width=4,background='gray',command=buttonclick(5))
-btn6=Button(btn_frame,text=6,height=2,width=4,background='gray',command=buttonclick(6))
-btn7=Button(btn_frame,text=7,height=2,width=4,background='gray',command=buttonclick(7))
-btn8=Button(btn_frame,text=8,height=2,width=4,background='gray',command=buttonclick(8))
-btn9=Button(btn_frame,text=9,height=2,width=4,background='gray',command=buttonclick(9))
-btn0=Button(btn_frame,text=0,height=2,width=4,background='gray',command=buttonclick(0))
-btn00=Button(btn_frame,text="00",height=2,width=4,background='gray',command=buttonclick(00))
-btndot=Button(btn_frame,text=".",height=2,width=4,background='gray',command=buttonclick('.'))
-btnon=Button(btn_frame,text="ON",height=2,width=4,background='gray',command=buttonclick(1))
-btnadd=Button(btn_frame,text="+",height=2,width=4,background='gray',command=buttonclick('+'))
-btnmin=Button(btn_frame,text="-",height=2,width=4,background='gray',command=buttonclick('-'))
-btnmult=Button(btn_frame,text="*",height=2,width=4,background='gray',command=buttonclick('*'))
-btndiv=Button(btn_frame,text="/",height=2,width=4,background='gray',command=buttonclick('/'))
-btnperc=Button(btn_frame,text="%",height=2,width=4,background='gray',command=buttonclick('%'))
-btnsqr=Button(btn_frame,text="^",height=2,width=4,background='gray',command=buttonclick('^'))
-btnroot=Button(btn_frame,text="~",height=2,width=4,background='gray',command=buttonclick('~'))
-btneql=Button(btn_frame,text="=",height=2,width=4,background='white',command=buttonclick('='))
-btnclr=Button(btn_frame,text="C",height=2,width=4,background='orange',command=buttonclick('c'))
-btnopen=Button(btn_frame,text="(",height=2,width=4,background='gray',command=buttonclick('('))
-btncls=Button(btn_frame,text=")",height=2,width=4,background='gray',command=buttonclick(')'))
+btn1=Button(btn_frame,text=1,height=2,width=4,background='gray',command=lambda:buttonclick(1))
+btn2=Button(btn_frame,text=2,height=2,width=4,background='gray',command=lambda:buttonclick(2))
+btn3=Button(btn_frame,text=3,height=2,width=4,background='gray',command=lambda:buttonclick(3))
+btn4=Button(btn_frame,text=4,height=2,width=4,background='gray',command=lambda:buttonclick(4))
+btn5=Button(btn_frame,text=5,height=2,width=4,background='gray',command=lambda:buttonclick(5))
+btn6=Button(btn_frame,text=6,height=2,width=4,background='gray',command=lambda:buttonclick(6))
+btn7=Button(btn_frame,text=7,height=2,width=4,background='gray',command=lambda:buttonclick(7))
+btn8=Button(btn_frame,text=8,height=2,width=4,background='gray',command=lambda:buttonclick(8))
+btn9=Button(btn_frame,text=9,height=2,width=4,background='gray',command=lambda:buttonclick(9))
+btn0=Button(btn_frame,text=0,height=2,width=4,background='gray',command=lambda:buttonclick(0))
+btn00=Button(btn_frame,text="00",height=2,width=4,background='gray',command=lambda:buttonclick(00))
+btndot=Button(btn_frame,text=".",height=2,width=4,background='gray',command=lambda:buttonclick('.'))
+btnon=Button(btn_frame,text="ON",height=2,width=4,background='gray',command=lambda:btn_on())
+btnadd=Button(btn_frame,text="+",height=2,width=4,background='gray',command=lambda:buttonclick('+'))
+btnmin=Button(btn_frame,text="-",height=2,width=4,background='gray',command=lambda:buttonclick('-'))
+btnmult=Button(btn_frame,text="*",height=2,width=4,background='gray',command=lambda:buttonclick('*'))
+btndiv=Button(btn_frame,text="/",height=2,width=4,background='gray',command=lambda:buttonclick('/'))
+btnperc=Button(btn_frame,text="%",height=2,width=4,background='gray',command=lambda:buttonclick('%'))
+btnsqr=Button(btn_frame,text="^",height=2,width=4,background='gray',command=lambda:buttonclick('^'))
+btnroot=Button(btn_frame,text="~",height=2,width=4,background='gray',command=lambda:buttonclick('~'))
+btneql=Button(btn_frame,text="=",height=2,width=4,background='white',command=btn_eql())
+btnclr=Button(btn_frame,text="C",height=2,width=4,background='orange',command=btn_clr())
+btnopen=Button(btn_frame,text="(",height=2,width=4,background='gray',command=lambda:buttonclick('('))
+btncls=Button(btn_frame,text=")",height=2,width=4,background='gray',command=lambda:buttonclick(')'))
 
 
 #text1.grid(row=0,column=0,rowspan=4,columnspan=2)
