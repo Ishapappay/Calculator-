@@ -12,13 +12,7 @@ calcWindow.resizable(0,0)
 mathexpression=""
 input_text=StringVar()
 
-#input_text= Entry(input_frame, font=('arial', 18, 'bold'), textvariable=input_text, width=50, bg="#eee", bd=0, justify=RIGHT)
 
-
-#text1=Label(calcWindow, text = "Label",  
- #   font = ("Cambria Math", 20),  
-  #  background = "white",  
-   # textvariable=mathexpression)
 def buttonclick(var):
     exp=var
     set_mathexpression(exp)
@@ -27,7 +21,6 @@ def buttonclick(var):
 def set_mathexpression(exp):
     global mathexpression
     mathexpression=mathexpression+str(exp)
-    #text1.bind(mathexpression)
     input_text.set(mathexpression)
 
 def btn_clr():
