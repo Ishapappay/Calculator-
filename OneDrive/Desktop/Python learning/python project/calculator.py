@@ -4,6 +4,8 @@ from faulthandler import disable
 from pickle import GLOBAL
 from tkinter import *
 from turtle import color, width
+import math
+
 calcWindow=Tk()
 calcWindow.title("Calculator")
 calcWindow.geometry("160x308")
@@ -13,12 +15,7 @@ mathexpression=""
 input_text=StringVar()
 
 
-def buttonclick(var):
-    exp=var
-    set_mathexpression(exp)
-    #print (exp)
-    
-def set_mathexpression(exp):
+def buttonclick(exp):
     global mathexpression
     mathexpression=mathexpression+str(exp)
     input_text.set(mathexpression)
@@ -26,16 +23,25 @@ def set_mathexpression(exp):
 def btn_clr():
     mathexpression=""
     input_text.set("")
+    text1.delete(0, END)
+
+    
 
 def btn_eql():
-    global mathexpression
-  #  answer=eval(mathexpression)
-  #  input_text.set(answer)
-    mathexpression=""
+    try:
+        print("wes")
+        global mathexpression
+        answer=eval(mathexpression)
+        input_text.set(str(answer))
+        mathexpression=""
+    except:
+ 
+        input_text.set(" error ")
+        mathexpression = ""
+     
 
 def btn_on():
     text1.configure(state='normal')
-
 
 
 input_frame = Frame(calcWindow, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)
@@ -49,10 +55,6 @@ text1.grid(row=0, column=0)
  
 text1.pack(ipady=10)
 text1.configure(state='disabled')
-
-#text1.pack(expand = True, fill = "both")  
-#textfeild.pack()
-
 
 
 btn_frame = Frame(calcWindow, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)
@@ -79,8 +81,8 @@ btndiv=Button(btn_frame,text="/",height=2,width=4,background='gray',command=lamb
 btnperc=Button(btn_frame,text="%",height=2,width=4,background='gray',command=lambda:buttonclick('%'))
 btnsqr=Button(btn_frame,text="^",height=2,width=4,background='gray',command=lambda:buttonclick('^'))
 btnroot=Button(btn_frame,text="~",height=2,width=4,background='gray',command=lambda:buttonclick('~'))
-btneql=Button(btn_frame,text="=",height=2,width=4,background='white',command=btn_eql())
-btnclr=Button(btn_frame,text="C",height=2,width=4,background='orange',command=btn_clr())
+btneql=Button(btn_frame,text="=",height=2,width=4,background='white',command=btn_eql)
+btnclr=Button(btn_frame,text="C",height=2,width=4,background='orange',command=btn_clr)
 btnopen=Button(btn_frame,text="(",height=2,width=4,background='gray',command=lambda:buttonclick('('))
 btncls=Button(btn_frame,text=")",height=2,width=4,background='gray',command=lambda:buttonclick(')'))
 
